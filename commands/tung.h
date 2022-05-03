@@ -31,14 +31,14 @@ string helpDoc = "List all available command.";
 
 int runExe(string input) {
     // What if just exist process 99?
-    // if (num_process == maxprocess) return 2;
-    // string file, argument;
-    // parse(input, file, argument);
-    // ZeroMemory(&si[num_process], sizeof(si[num_process]));
-    // si[num_process].cb = sizeof(si[num_process]);
-    // CreateProcess(file.c_str(), NULL, NULL, NULL, FALSE,
-    //               CREATE_NEW_CONSOLE, NULL, NULL, &si[num_process], &pi[num_process]);
-    // ++num_process;
+    if (num_process == maxprocess) return 2;
+    string file, argument;
+    parse(input, file, argument);
+    ZeroMemory(&si[num_process], sizeof(si[num_process]));
+    si[num_process].cb = sizeof(si[num_process]);
+    CreateProcess(file.c_str(), NULL, NULL, NULL, FALSE,
+                  CREATE_NEW_CONSOLE, NULL, NULL, &si[num_process], &pi[num_process]);
+    ++num_process;
     return 0;
 }
 string runExeDoc = "Run a .exe file, can omit 'runexe'.";
