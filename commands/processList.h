@@ -2,7 +2,7 @@
 #include <windows.h>
 using namespace std;
 
-const int maxprocess = 3;
+const int maxprocess = 100;
 
 STARTUPINFO si[maxprocess];
 PROCESS_INFORMATION pi[maxprocess];

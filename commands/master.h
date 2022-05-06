@@ -18,4 +18,10 @@ void buildCommand() {
     funcmap["help"] = funcAndInstruction(help, helpDoc);
     funcmap["exit"] = funcAndInstruction(exitShell, exitShellDoc);
     funcmap["runexe"] = funcAndInstruction(runExe, runExeDoc);
+    funcmap["datetime"] = funcAndInstruction(datetime, datetimeDoc);
+    funcmap["time"] = funcAndInstruction(timee, timeDoc);
+    funcmap["date"] = funcAndInstruction(date, dateDoc);
+    // funcmap["stop"] = funcAndInstruction(stop, stopDoc);
+    // funcmap["list"] = funcAndInstruction(listt, listDoc);
+    funcmap["resume"] = funcAndInstruction(resume, resumeDoc);
 }
