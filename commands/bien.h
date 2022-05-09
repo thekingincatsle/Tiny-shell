@@ -14,11 +14,11 @@ int kill(string input){
     //chuyen tu string sang so
     DWORD processId = stringToDWORD(arg1);
     //
-    HANDLE hProc = OpenProcess(PROCESS_ALL_ACCESS,FALSE,processId);
+    HANDLE hProc = OpenProcess(PROCESS_TERMINATE,FALSE,processId);
 	TerminateProcess(hProc,1);
     return 0;
 }
-
+    
 int exit(){
     // thoat khoi mot process
     return 1;
