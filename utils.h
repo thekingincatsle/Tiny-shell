@@ -23,3 +23,10 @@ void parse(string input, string &command, string &argument) {
     command = trim(command);
     argument = trim(argument);
 }
+
+unsigned __LONG32 stringToDWORD(string input){
+    stringstream ss(input);
+    unsigned __LONG32 num = 0;
+    ss >> num;
+    return num;
+}
