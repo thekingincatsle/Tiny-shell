@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <tlhelp32.h>
+#include <winbase.h>
 
 #include <cstdlib>
 
@@ -129,3 +130,44 @@ int resume(string input) {
     return 0;
 }
 string resumeDoc = "Resume a stopped background process.";
+
+int addpath(string input) {
+    string a = takeFirstArgAndRemove(input);
+    string b = takeFirstArgAndRemove(input);
+    putenv((a + "=" + b).c_str());
+    return 0;
+}
+string addpathDoc = "Add/change an environment variable";
+
+int path(string input) {
+    cout << getenv(takeFirstArgAndRemove(input).c_str()) << "\n";
+    return 0;
+}
+string pathDoc = "Display an environment variable";
+
+typedef std::basic_string<TCHAR> tstring;
+
+int listpath(string input) {
+    auto free = [](LPTCH p) { FreeEnvironmentStrings(p); };
+    auto env_block = std::unique_ptr<TCHAR, decltype(free)>{
+        GetEnvironmentStrings(), free};
+    for (LPTCH i = env_block.get(); *i != '\0'; ++i) {
+        tstring key;
+        tstring value;
+        for (; *i != '='; ++i) key += *i;
+        ++i;
+        for (; *i != '\0'; ++i) value += *i;
+        cout << key;
+        for( int i=0; i<4-key.size()/8; ++i ) cout<<"\t";
+        cout<< value << "\n";
+    }
+    return 0;
+}
+string listpathDoc = "Display all environment variable";
+
+int delpath(string input){
+    input = takeFirstArgAndRemove(input);
+    SetEnvironmentVariable(input.c_str(), NULL);
+    return 0;
+}
+string delpathDoc = "Delete an environment variable";

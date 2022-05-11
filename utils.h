@@ -23,3 +23,11 @@ void parse(string input, string &command, string &argument) {
     command = trim(command);
     argument = trim(argument);
 }
+
+string takeFirstArgAndRemove(string &input){
+    // input = "    A       B.......     "
+    // -> return A, input := B
+    string A;
+    parse(input, A, input);
+    return A;
+}

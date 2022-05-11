@@ -30,7 +30,7 @@ bool processRunResult(int res) {
         case 1:
             return true;
         case 2:
-            cout << "Can't create process, too much process.\n";
+            cout << "Command fails.\n";
             break;
         default:
             cout << "Error!\n";
@@ -39,7 +39,7 @@ bool processRunResult(int res) {
     return false;
 }
 
-int main() {
+int main(int argc, char **argv, char **envp) {
     buildCommand();
     string input;
     while (true) {
