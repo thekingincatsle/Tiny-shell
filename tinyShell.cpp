@@ -6,12 +6,8 @@
 using namespace std;
 
 int run(string input) {
-    // command parsing
-    input = trim(input);
-
-    if (input == "") return 0;
-    string command, argument;
-    parse(input, command, argument);
+    string command = takeFirstArgAndRemove(input);
+    if (command == "") return 0;
 
     if (funcmap.find(command) == funcmap.end()) {
         if (command.find('.') != string::npos && command.substr(command.find('.')) == ".exe")
@@ -20,7 +16,7 @@ int run(string input) {
             cout << command << " is not recognized as an internal or external command, operable program or batch file.\n";
         return 0;
     } else
-        return funcmap[command].func(argument);
+        return funcmap[command].func(input);
 }
 
 bool processRunResult(int res) {
@@ -34,7 +30,6 @@ bool processRunResult(int res) {
             break;
         default:
             cout << "Error!\n";
-            break;
     }
     return false;
 }
