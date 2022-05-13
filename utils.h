@@ -12,6 +12,7 @@ string trim(string s) {
 void parse(string input, string &command, string &argument) {
     // split input string by " "
     // input = "  A  B...    " -> command = "A", argument = "B..."
+    input = trim(input);
     size_t found = input.find(" ");
     if (found == string::npos) {
         command = input;

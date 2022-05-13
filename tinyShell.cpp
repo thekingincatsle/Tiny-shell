@@ -34,7 +34,7 @@ bool processRunResult(int res) {
     return false;
 }
 
-int main(int argc, char **argv, char **envp) {
+int main() {
     buildCommand();
     string input;
     while (true) {

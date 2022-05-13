@@ -60,8 +60,8 @@ string datetimeDoc = "Display current date and time.";
 
 int runExe(string input) {
     if (num_process == maxprocess) return 2;
-    string file, argument;
-    parse(input, file, argument);
+    string file = takeFirstArgAndRemove(input);
+    cout << file << endl;
     ZeroMemory(&si[num_process], sizeof(si[num_process]));
     si[num_process].cb = sizeof(si[num_process]);
     if (!CreateProcess(file.c_str(), NULL, NULL, NULL, FALSE,
@@ -79,7 +79,7 @@ int stop(string input) {
     parse(input, input, whatever);
     input = trim(input);
     stringstream ss(input);
-    unsigned __LONG32 processId = 0;
+    DWORD processId = 0;
     ss >> processId;
 
     HANDLE hThreadSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
@@ -116,19 +116,12 @@ int resume(string input) {
     ss >> processId;
     cout << processId << endl;
 
-    HANDLE hThreadSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
-    THREADENTRY32 threadEntry;
-    threadEntry.dwSize = sizeof(THREADENTRY32);
-    Thread32First(hThreadSnapshot, &threadEntry);
-    do {
-        if (threadEntry.th32OwnerProcessID == processId) {
-            HANDLE hThread = OpenThread(THREAD_ALL_ACCESS, FALSE, threadEntry.th32ThreadID);
-            ResumeThread(hThread);
-            CloseHandle(hThread);
+    for (int i = 0; i < maxprocess; ++i) {
+        if (pi[i].dwProcessId == processId) {
+            ResumeThread(pi[i].hThread);
+            break;
         }
-    } while (Thread32Next(hThreadSnapshot, &threadEntry));
-
-    CloseHandle(hThreadSnapshot);
+    }
     return 0;
 }
 string resumeDoc = "Resume a stopped background process.";
