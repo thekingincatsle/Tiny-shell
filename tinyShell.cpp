@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <windows.h>
-
+//#include "bien.h"
 #include "commands/master.h"
 #include "utils.h"
 using namespace std;
@@ -44,9 +44,20 @@ int main() {
     string input;
     while (true) {
         input = "";
-        cout << filesystem::current_path().string() << ">";
+        //cout << filesystem::current_path().string() << ">";
         getline(cin, input);
-        int res = run(input);
+        
+        string Input = Mode(input);
+        // if (mode == 0) {
+        //     int num_process_run = numProcessRunning();
+        //     if (input != "backgroundMode" & num_process_run != 0){
+        //         cout << "dang o che do foreground; doi tien trinh ket thuc de thuc hien tiep"<<endl;
+        //         input = "";
+        //     }
+        //     //else num_process_run++;
+        // }
+        
+        int res = run(Input);
         if (processRunResult(res)) break;
     }
 }
