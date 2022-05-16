@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "tung.h"
+#include "dat.h"
 using namespace std;
 /*
     >> How to add a command:
@@ -18,4 +19,5 @@ void buildCommand() {
     funcmap["help"] = funcAndInstruction(help, helpDoc);
     funcmap["exit"] = funcAndInstruction(exitShell, exitShellDoc);
     funcmap["runexe"] = funcAndInstruction(runExe, runExeDoc);
+    funcmap["date"] = funcAndInstruction(date, dateDoc);
 }
