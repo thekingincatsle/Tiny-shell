@@ -15,12 +15,6 @@ int kill(string c) {
     // chuyen tu string sang so
     DWORD processId = stringToDWORD(arg1);
     HANDLE hProc = OpenProcess(PROCESS_TERMINATE, FALSE, processId);
-    // DWORD processId1 = GetProcessId(hProc);
-    // DWORD id = GetCurrentProcessId();
-    for (int i = 0; i < maxprocess; i++) {
-        DWORD id = pi[i].dwProcessId;
-        cout << id << endl;
-    }
     if (hProc == NULL) {
         cout << "khong co tien trinh" << endl;
         return 0;

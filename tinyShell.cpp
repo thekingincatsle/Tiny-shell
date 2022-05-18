@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <windows.h>
-//#include "bien.h"
+
 #include "commands/master.h"
 #include "utils.h"
 using namespace std;
@@ -11,7 +11,7 @@ int run(string input) {
 
     if (funcmap.find(command) == funcmap.end()) {
         if (command.find('.') != string::npos && command.substr(command.find('.')) == ".exe")
-            return runExe(command+" "+input);  // No command, run file .exe
+            return runExe(command + " " + input);  // No command, run file .exe
         else
             cout << command << " is not recognized as an internal or external command, operable program or batch file.\n";
         return 0;
@@ -41,9 +41,9 @@ int main() {
         input = "";
         cout << filesystem::current_path().string() << ">";
         getline(cin, input);
-        
+
         string Input = Mode(input);
-        
+
         int res = run(Input);
         if (processRunResult(res)) break;
     }

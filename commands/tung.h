@@ -17,10 +17,10 @@ int echo(string c) {
 string echoDoc = "Just print the argument.";
 
 int exitShell(string c) {
-    for (int i =0; i< maxprocess ; i++) {
+    for (int i = 0; i < maxprocess; i++) {
         DWORD id = pi[i].dwProcessId;
-        HANDLE hProc = OpenProcess(PROCESS_TERMINATE,FALSE,id);
-        TerminateProcess(hProc,0);
+        HANDLE hProc = OpenProcess(PROCESS_TERMINATE, FALSE, id);
+        TerminateProcess(hProc, 0);
     }
     // Need to kill all process
     return 1;
@@ -66,7 +66,6 @@ string datetimeDoc = "Display current date and time.";
 int runExe(string input) {
     if (num_process == maxprocess) return 2;
     string file = takeFirstArgAndRemove(input);
-    // cout << file << endl;
     input = takeFirstArgAndRemove(input);
     ZeroMemory(&si[num_process], sizeof(si[num_process]));
     si[num_process].cb = sizeof(si[num_process]);
@@ -78,15 +77,11 @@ int runExe(string input) {
         return 0;
     }
 }
-string runExeDoc = "Run a .exe file, can omit 'runexe'.";
+string runExeDoc = "Run a .exe file, can omit 'runexe' (draft).";
 
 int stop(string input) {
-    string whatever;
-    parse(input, input, whatever);
-    input = trim(input);
-    stringstream ss(input);
-    DWORD processId = 0;
-    ss >> processId;
+    string processIdStr = takeFirstArgAndRemove(input);
+    DWORD processId = stringToDWORD(processIdStr);
 
     HANDLE hThreadSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
     THREADENTRY32 threadEntry;
@@ -103,7 +98,7 @@ int stop(string input) {
     CloseHandle(hThreadSnapshot);
     return 0;
 }
-string stopDoc = "Stop a background process.";
+string stopDoc = "Stop a background process (draft).";
 
 int listprocess(string input) {
     for (int i = 0; i < num_process; ++i) {
@@ -114,13 +109,8 @@ int listprocess(string input) {
 string listprocessDoc = "All running process information.";
 
 int resume(string input) {
-    string whatever;
-    parse(input, input, whatever);
-    input = trim(input);
-    stringstream ss(input);
-    DWORD processId;
-    ss >> processId;
-    cout << processId << endl;
+    string processIdStr = takeFirstArgAndRemove(input);
+    DWORD processId = stringToDWORD(processIdStr);
 
     for (int i = 0; i < maxprocess; ++i) {
         if (pi[i].dwProcessId == processId) {
