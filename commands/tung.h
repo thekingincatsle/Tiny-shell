@@ -61,7 +61,8 @@ string datetimeDoc = "Display current date and time.";
 int runExe(string input) {
     if (num_process == maxprocess) return 2;
     string file = takeFirstArgAndRemove(input);
-    cout << file << endl;
+    // cout << file << endl;
+    input = takeFirstArgAndRemove(input);
     ZeroMemory(&si[num_process], sizeof(si[num_process]));
     si[num_process].cb = sizeof(si[num_process]);
     if (!CreateProcess(file.c_str(), NULL, NULL, NULL, FALSE,

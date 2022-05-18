@@ -11,7 +11,7 @@ int run(string input) {
 
     if (funcmap.find(command) == funcmap.end()) {
         if (command.find('.') != string::npos && command.substr(command.find('.')) == ".exe")
-            return runExe(input);  // No command, run file .exe
+            return runExe(command+" "+input);  // No command, run file .exe
         else
             cout << command << " is not recognized as an internal or external command, operable program or batch file.\n";
         return 0;
