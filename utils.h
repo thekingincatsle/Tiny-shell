@@ -12,6 +12,7 @@ string trim(string s) {
 void parse(string input, string &command, string &argument) {
     // split input string by " "
     // input = "  A  B...    " -> command = "A", argument = "B..."
+    input = trim(input);
     size_t found = input.find(" ");
     if (found == string::npos) {
         command = input;
@@ -24,7 +25,15 @@ void parse(string input, string &command, string &argument) {
     argument = trim(argument);
 }
 
-unsigned stringToDWORD(string input){
+string takeFirstArgAndRemove(string &input) {
+    // input = "    A       B.......     "
+    // -> return A, input := B
+    string A;
+    parse(input, A, input);
+    return A;
+}
+
+unsigned stringToDWORD(string input) {
     stringstream ss(input);
     unsigned num = 0;
     ss >> num;

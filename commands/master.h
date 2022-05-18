@@ -10,7 +10,7 @@ using namespace std;
         2, 3, ...
     Create instruction/doc (string)
     Add to funcmap in buildCommand() below.
-    See echo command (in tung.h) for example. 
+    See echo command (in tung.h) for example.
 */
 
 void buildCommand() {
@@ -18,6 +18,16 @@ void buildCommand() {
     funcmap["help"] = funcAndInstruction(help, helpDoc);
     funcmap["exitShell"] = funcAndInstruction(exitShell, exitShellDoc);
     funcmap["runexe"] = funcAndInstruction(runExe, runExeDoc);
+    funcmap["datetime"] = funcAndInstruction(datetime, datetimeDoc);
+    funcmap["time"] = funcAndInstruction(timee, timeDoc);
+    funcmap["date"] = funcAndInstruction(date, dateDoc);
+    funcmap["stop"] = funcAndInstruction(stop, stopDoc);
+    funcmap["listprocess"] = funcAndInstruction(listprocess, listprocessDoc);
+    funcmap["resume"] = funcAndInstruction(resume, resumeDoc);
+    funcmap["addpath"] = funcAndInstruction(addpath, addpathDoc);
+    funcmap["path"] = funcAndInstruction(path, pathDoc);
+    funcmap["listpath"] = funcAndInstruction(listpath, listpathDoc);
+    funcmap["delpath"] = funcAndInstruction(delpath, delpathDoc);
     funcmap["kill"] = funcAndInstruction(kill, killDoc);
     funcmap["foregroundMode"] = funcAndInstruction(foregroundMode, foregroundModeDoc);
     funcmap["backgroundMode"] = funcAndInstruction(backgroundMode, backgroundModeDoc);
