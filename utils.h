@@ -25,10 +25,17 @@ void parse(string input, string &command, string &argument) {
     argument = trim(argument);
 }
 
-string takeFirstArgAndRemove(string &input){
+string takeFirstArgAndRemove(string &input) {
     // input = "    A       B.......     "
     // -> return A, input := B
     string A;
     parse(input, A, input);
     return A;
+}
+
+unsigned stringToDWORD(string input) {
+    stringstream ss(input);
+    unsigned num = 0;
+    ss >> num;
+    return num;
 }

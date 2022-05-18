@@ -17,6 +17,11 @@ int echo(string c) {
 string echoDoc = "Just print the argument.";
 
 int exitShell(string c) {
+    for (int i =0; i< maxprocess ; i++) {
+        DWORD id = pi[i].dwProcessId;
+        HANDLE hProc = OpenProcess(PROCESS_TERMINATE,FALSE,id);
+        TerminateProcess(hProc,0);
+    }
     // Need to kill all process
     return 1;
 }

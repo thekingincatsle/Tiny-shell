@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+#include "bien.h"
 #include "tung.h"
 using namespace std;
 /*
@@ -16,7 +16,7 @@ using namespace std;
 void buildCommand() {
     funcmap["echo"] = funcAndInstruction(echo, echoDoc);
     funcmap["help"] = funcAndInstruction(help, helpDoc);
-    funcmap["exit"] = funcAndInstruction(exitShell, exitShellDoc);
+    funcmap["exitShell"] = funcAndInstruction(exitShell, exitShellDoc);
     funcmap["runexe"] = funcAndInstruction(runExe, runExeDoc);
     funcmap["datetime"] = funcAndInstruction(datetime, datetimeDoc);
     funcmap["time"] = funcAndInstruction(timee, timeDoc);
@@ -28,4 +28,8 @@ void buildCommand() {
     funcmap["path"] = funcAndInstruction(path, pathDoc);
     funcmap["listpath"] = funcAndInstruction(listpath, listpathDoc);
     funcmap["delpath"] = funcAndInstruction(delpath, delpathDoc);
+    funcmap["kill"] = funcAndInstruction(kill, killDoc);
+    funcmap["foregroundMode"] = funcAndInstruction(foregroundMode, foregroundModeDoc);
+    funcmap["backgroundMode"] = funcAndInstruction(backgroundMode, backgroundModeDoc);
+    //funcmap["exit"] = funcAndInstruction(exit, exitDoc);
 }

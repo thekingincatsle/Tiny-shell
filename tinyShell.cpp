@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <windows.h>
-
+//#include "bien.h"
 #include "commands/master.h"
 #include "utils.h"
 using namespace std;
@@ -41,7 +41,10 @@ int main() {
         input = "";
         cout << filesystem::current_path().string() << ">";
         getline(cin, input);
-        int res = run(input);
+        
+        string Input = Mode(input);
+        
+        int res = run(Input);
         if (processRunResult(res)) break;
     }
 }
